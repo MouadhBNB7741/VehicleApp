@@ -1,0 +1,136 @@
+-------------------------------------------------
+User Management
+-------------------------------------------------
+Register User
+Login User
+Logout User
+Get Current User Profile
+Update User Profile
+Get User by ID
+Search Users
+-------------------------------------------------
+
+
+-------------------------------------------------
+Partner Management
+-------------------------------------------------
+Apply to Become Partner
+Get All Partners
+Get Partner by ID
+Update Partner Profile
+Get Partners by Service Type
+Update Partner Availability Status
+Get Available Partners (by Location)
+-------------------------------------------------
+
+
+-------------------------------------------------
+Admin Management
+-------------------------------------------------
+Approve Partner Application
+Decline Partner Application
+Ban Partner
+Unban Partner
+View Reported Partners
+View Partner Applications
+Delete User or Partner
+-------------------------------------------------
+
+
+-------------------------------------------------
+Request Management (Call for Help)
+-------------------------------------------------
+Create Request for Help
+Get All Requests
+Get Request by ID
+Get Requests by User ID
+Get Requests by Partner ID
+Accept/Decline Request
+Cancel Request
+Complete Request
+Get Requests by Service Type
+Get Nearby Active Requests
+-------------------------------------------------
+
+
+-------------------------------------------------
+Report Management
+-------------------------------------------------
+Submit Report on Partner
+Get All Reports
+Get Report by ID
+Resolve Report
+Get Reports by User ID
+Get Reports by Partner ID
+-------------------------------------------------
+
+
+-------------------------------------------------
+Car Verification & Guarantee
+-------------------------------------------------
+Request Car Verification
+Get All Verifications
+Get Verification by ID
+Verify Car (Admin Action)
+Issue Guarantee
+Get Guarantee by Verification ID
+Check Guarantee Validity
+-------------------------------------------------
+
+
+-------------------------------------------------
+Service Management
+-------------------------------------------------
+Get All Service Types
+Get Services by Category (Car / House)
+Add New Service Type (Admin)
+Update Service Type (Admin)
+Delete Service Type (Admin)
+-------------------------------------------------
+
+
+-------------------------------------------------
+Location Management
+-------------------------------------------------
+Update User Location
+Update Partner Location
+Get Nearest Partners by Location
+Get Location by User ID
+Get Location by Partner ID
+-------------------------------------------------
+
+
+-------------------------------------------------
+Transaction & Payment Management
+-------------------------------------------------
+Create Transaction
+Get Transaction by Request ID
+Get All Transactions
+Get Transactions by Partner ID
+Get Transactions by User ID
+Update Transaction Status
+Calculate and Collect Tax
+Refund Transaction
+-------------------------------------------------
+
+
+-------------------------------------------------
+Notification Management
+-------------------------------------------------
+Send Notification to User
+Send Notification to Partner
+Mark Notification as Read
+Get All Notifications for User
+Get All Notifications for Partner
+-------------------------------------------------
+
+
+-------------------------------------------------
+Authentication & Security
+-------------------------------------------------
+Send Password Reset Email
+Reset Password
+Change Password
+Enable 2FA (Optional)
+Verify Email
+-------------------------------------------------
