@@ -1,0 +1,227 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:@localhost:3306/VehicleApp"
+}
+
+model User {
+  id            String       @id @default(cuid())
+  fullName      String
+  email         String       @unique
+  passwordHash  String
+  phoneNumber   String?
+  role          Role
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  partner       Partner?
+  admin         Admin?
+  requests      Request[]
+  reports       Report[]
+  carVerifications CarVerification[]
+  sentReports   Report[]     @relation("UserToReportReporter")
+  notifications Notification[]
+
+  UserLocation UserLocation[]
+
+  PartnerApplication PartnerApplication[]
+}
+
+enum Role {
+  USER
+  PARTNER
+  ADMIN
+}
+
+model Partner {
+  id              String       @id @default(cuid())
+  userId          String       @unique
+  user            User         @relation(fields: [userId], references: [id])
+  businessName    String
+  description     String?
+  serviceTypeId   Int
+  serviceType     ServiceType  @relation(fields: [serviceTypeId], references: [id])
+  isAvailable     Boolean      @default(true)
+  rating          Float?       
+  totalJobsDone   Int          @default(0)
+  locationId      Int?
+  location        Location?    @relation(fields: [locationId], references: [id])
+  requests        Request[]
+  transactions    Transaction[]
+  applications    PartnerApplication[]
+  notifications   Notification[]
+
+  Report Report[]
+}
+
+model Admin {
+  id       String    @id @default(cuid())
+  userId   String    @unique
+  user     User      @relation(fields: [userId], references: [id])
+  roleTitle String
+  accessLevel Int
+
+  CarVerification CarVerification[]
+
+  PartnerApplication PartnerApplication[]
+}
+
+model ServiceType {
+  id          Int       @id @default(autoincrement())
+  name        String
+  category    String    // e.g. 'car', 'house'
+  description String?
+  partners    Partner[]
+  requests    Request[]
+
+  PartnerApplication PartnerApplication[]
+}
+
+model Location {
+  id          Int       @id @default(autoincrement())
+  latitude    Float
+  longitude   Float
+  address     String
+  city        String
+  country     String
+  partners    Partner[]
+  users       UserLocation[]
+  requests    Request[]
+}
+
+model UserLocation {
+  userId  String
+  user    User     @relation(fields: [userId], references: [id])
+  locationId Int
+  location Location @relation(fields: [locationId], references: [id])
+
+  @@id([userId, locationId])
+}
+
+model Request {
+  id             String       @id @default(cuid())
+  userId         String
+  user           User         @relation(fields: [userId], references: [id])
+  serviceTypeId  Int
+  serviceType    ServiceType  @relation(fields: [serviceTypeId], references: [id])
+  locationId     Int
+  location       Location     @relation(fields: [locationId], references: [id])
+  status         RequestStatus @default(PENDING)
+  partnerId      String?
+  partner        Partner?     @relation(fields: [partnerId], references: [id])
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  Transaction Transaction[]
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  COMPLETED
+  CANCELLED
+}
+
+model Report {
+  id             String      @id @default(cuid())
+  reporterId     String
+  reporter       User        @relation("UserToReportReporter", fields: [reporterId], references: [id])
+  partnerId      String
+  partner        Partner     @relation(fields: [partnerId], references: [id])
+  reason         String
+  evidenceUrl    String?
+  resolved       Boolean     @default(false)
+  adminNotes     String?
+  createdAt      DateTime    @default(now())
+
+  User User[]
+}
+
+model CarVerification {
+  id           String       @id @default(cuid())
+  userId       String
+  user         User         @relation(fields: [userId], references: [id])
+  vinNumber    String
+  carModel     String
+  year         Int
+  mileage      Int
+  status       VerificationStatus @default(PENDING)
+  adminId      String?
+  verifiedBy   Admin?       @relation(fields: [adminId], references: [id])
+  guarantee    Guarantee?
+  createdAt    DateTime     @default(now())
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+model Guarantee {
+  id                String       @id @default(cuid())
+  verificationId    String       @unique
+  verification      CarVerification @relation(fields: [verificationId], references: [id])
+  validUntil        DateTime
+  terms             String
+  createdAt         DateTime     @default(now())
+}
+
+model PartnerApplication {
+  id               String       @id @default(cuid())
+  userId           String
+  user             User         @relation(fields: [userId], references: [id])
+  cvUrl            String
+  experienceSummary String?
+  serviceTypeId    Int
+  serviceType      ServiceType  @relation(fields: [serviceTypeId], references: [id])
+  status           ApplicationStatus @default(PENDING)
+  adminId          String?
+  reviewedBy       Admin?       @relation(fields: [adminId], references: [id])
+  reviewedAt       DateTime?
+  createdAt        DateTime     @default(now())
+
+  Partner Partner[]
+}
+
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  DECLINED
+}
+
+model Transaction {
+  id            String       @id @default(cuid())
+  requestId     String
+  request       Request      @relation(fields: [requestId], references: [id])
+  partnerId     String
+  partner       Partner      @relation(fields: [partnerId], references: [id])
+  amount        Float
+  taxAmount     Float
+  totalAmount   Float
+  paymentStatus PaymentStatus @default(UNPAID)
+  paymentMethod String
+  createdAt     DateTime     @default(now())
+}
+
+enum PaymentStatus {
+  PAID
+  UNPAID
+  REFUNDED
+}
+
+model Notification {
+  id         String       @id @default(cuid())
+  userId     String?
+  user       User?        @relation(fields: [userId], references: [id])
+  partnerId  String?
+  partner    Partner?     @relation(fields: [partnerId], references: [id])
+  message    String
+  type       String
+  read       Boolean      @default(false)
+  createdAt  DateTime     @default(now())
+}
