@@ -1,5 +1,5 @@
-import { verify } from "jsonwebtoken";
-import prisma from "../services/prisma";
+import jwt from "jsonwebtoken";
+import prisma from "../services/prisma.js";
 
 export async function authMiddleware(req, res, next) {
   try {
@@ -13,7 +13,7 @@ export async function authMiddleware(req, res, next) {
       return res.status(401).json({ error: "Not authorized, no token" });
     }
 
-    const decoded = verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await prisma.user.findUnique({
       where: { id: decoded.id },

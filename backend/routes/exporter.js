@@ -1,1 +1,1 @@
-export { default as userRouter } from "../routes/UserRoute";
+export { default as userRouter } from "../routes/UserRoute.js";

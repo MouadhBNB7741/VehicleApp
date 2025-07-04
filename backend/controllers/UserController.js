@@ -1,19 +1,26 @@
 import { hash, compare } from "bcryptjs";
-import prisma from "../services/prisma";
+import prisma from "../services/prisma.js";
 import {
   registerUserSchema,
   getUserByIdSchema,
   loginUserSchema,
   searchUsersSchema,
   updateUserSchema,
-} from "../validators/User";
+} from "../validators/User.js";
 import * as zod from "zod";
 import jwt from "jsonwebtoken";
 
 export async function registerUser(req, res) {
   try {
-    const { email, fullName, password, role, phoneNumber } =
-      registerUserSchema.parse(req.body);
+    const { email, fullName, password, phoneNumber } = registerUserSchema.parse(
+      req.body
+    );
+
+    if (!email && !phoneNumber) {
+      res.status.json({
+        error: "Must at least have an email or a phone number",
+      });
+    }
 
     const hashedPassword = await hash(password, 10);
 
@@ -22,13 +29,13 @@ export async function registerUser(req, res) {
         email,
         fullName,
         passwordHash: hashedPassword,
-        role,
+        role: "USER",
         phoneNumber,
       },
     });
 
-    res.status(200).json({
-      message: "user created successfully",
+    res.status(201).json({
+      message: "User created successfully",
       user: newUser,
     });
   } catch (error) {
@@ -229,6 +236,40 @@ export async function searchUsers(req, res) {
     console.error("Search users error:", error);
     return res.status(500).json({
       message: "Something went wrong. Please try again later.",
+    });
+  }
+}
+
+export async function adminCreateUser(req, res) {
+  try {
+    const { email, fullName, password, phoneNumber, role } =
+      registerUserSchema.parse(req.body);
+
+    const hashedPassword = await hash(password, 10);
+
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        fullName,
+        passwordHash: hashedPassword,
+        role,
+        phoneNumber,
+      },
+    });
+
+    res.status(201).json({
+      message: "User created successfully",
+      user: newUser,
+    });
+  } catch (error) {
+    if (error instanceof zod.ZodError) {
+      return res.status(400).json({ error: error.errors });
+    }
+
+    console.error("Registration error:", error);
+
+    return res.status(500).json({
+      message: "Sorry, something went wrong. Please try again later.",
     });
   }
 }

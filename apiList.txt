@@ -3,11 +3,11 @@ User Management
 -------------------------------------------------
 Register User //
 Login User //
-Logout User
-Get Current User Profile
-Update User Profile
-Get User by ID
-Search Users
+Logout User //
+Get Current User Profile //
+Update User Profile //
+Get User by ID //
+Search Users //
 -------------------------------------------------
 
 
