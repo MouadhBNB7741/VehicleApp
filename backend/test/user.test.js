@@ -47,8 +47,6 @@ async function getMe(token) {
 
   const data = await res.json();
 
-  console.log("Status:", res.status);
-  console.log("Headers:", res.headers);
   console.log("Response Body:", data);
 
   if (!res.ok) {
@@ -104,21 +102,6 @@ async function adminCreateUser(token, userData) {
 
 async function runTests() {
   try {
-    const token = await loginUser({
-      email: "test@example.com",
-      password: "password123",
-    });
-
-    // 3. Get current user
-    const user = await getMe(token);
-    console.log("Fetched user:", user);
-
-    // 4. Update current user
-    const updatedUser = await updateMe(token, {
-      fullName: "Updated Name",
-    });
-    console.log("Updated user:", updatedUser);
-
     // Optional: Admin tests
     const adminToken = await loginUser({
       email: "admin@example.com", // make sure this exists

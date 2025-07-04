@@ -55,6 +55,8 @@ export async function login(req, res) {
   try {
     const { email, phoneNumber, password } = loginUserSchema.parse(req.body);
 
+    console.log(await hash(password, 10));
+
     const user = await prisma.user.findFirst({
       where: {
         OR: [{ email }, { phoneNumber }],
@@ -108,7 +110,7 @@ export async function logout(req, res) {
 }
 
 export async function getCurrentUserProfile(req, res) {
-  const userId = req.user.userId;
+  const userId = req.user.id;
 
   try {
     const user = await prisma.user.findUnique({
@@ -138,7 +140,8 @@ export async function getCurrentUserProfile(req, res) {
 }
 
 export async function updateUserProfile(req, res) {
-  const userId = req.user.userId;
+  const userId = req.user.id;
+
   try {
     const updateData = updateUserSchema.parse(req.body);
 

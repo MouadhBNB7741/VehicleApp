@@ -16,7 +16,7 @@ export async function authMiddleware(req, res, next) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await prisma.user.findUnique({
-      where: { id: decoded.id },
+      where: { id: decoded.userId },
       select: {
         id: true,
         email: true,
@@ -29,12 +29,7 @@ export async function authMiddleware(req, res, next) {
       return res.status(401).json({ error: "User not found" });
     }
 
-    if (user.status !== "ACTIVE") {
-      return res.status(403).json({ error: "User account is not active" });
-    }
-
     req.user = user;
-
     next();
   } catch (error) {
     if (error.name === "JsonWebTokenError") {
@@ -52,9 +47,9 @@ export function roleMiddleware(allowedRoles) {
   return (req, res, next) => {
     const user = req.user;
 
-    if (!user || !allowedRoles.includes(user.user_type)) {
+    if (!user || !allowedRoles.includes(user.role)) {
       return res.status(403).json({
-        error: `Forbidden: User role "${user?.user_type}" not allowed`,
+        error: `Forbidden: User role "${user?.role}" not allowed`,
       });
     }
 
