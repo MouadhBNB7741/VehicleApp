@@ -20,10 +20,8 @@ export async function authMiddleware(req, res, next) {
       select: {
         id: true,
         email: true,
-        first_name: true,
-        last_name: true,
-        user_type: true,
-        status: true,
+        fullName: true,
+        role: true,
       },
     });
 

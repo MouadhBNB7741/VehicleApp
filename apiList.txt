@@ -1,8 +1,8 @@
 -------------------------------------------------
 User Management
 -------------------------------------------------
-Register User
-Login User
+Register User //
+Login User //
 Logout User
 Get Current User Profile
 Update User Profile
