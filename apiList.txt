@@ -14,13 +14,13 @@ Search Users //
 -------------------------------------------------
 Partner Management
 -------------------------------------------------
-Apply to Become Partner
-Get All Partners
-Get Partner by ID
-Update Partner Profile
-Get Partners by Service Type
-Update Partner Availability Status
-Get Available Partners (by Location)
+Apply to Become Partner //
+Get All Partners //
+Get Partner by ID //
+Update Partner Profile //
+Get Partners by Service Type //
+Update Partner Availability Status // 
+Get Available Partners (by Location) //
 -------------------------------------------------
 
 
