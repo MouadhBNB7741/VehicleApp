@@ -4,8 +4,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-import { userRouter } from "./routes/exporter.js";
+import { dirname } from "path";
+import { userRouter, partnerRouter } from "./routes/exporter.js";
 
 dotenv.config();
 
@@ -28,6 +28,7 @@ if (process.env.NODE_ENV !== "test") {
 
 // Routes
 app.use("/user", userRouter);
+app.use("/partner", partnerRouter);
 
 app.listen(8081, () => {
   console.log("Mouadh in the back says Hi!");
