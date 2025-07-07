@@ -5,7 +5,7 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { userRouter, partnerRouter } from "./routes/exporter.js";
+import { userRouter, partnerRouter, adminRouter } from "./routes/exporter.js";
 
 dotenv.config();
 
@@ -29,6 +29,7 @@ if (process.env.NODE_ENV !== "test") {
 // Routes
 app.use("/user", userRouter);
 app.use("/partner", partnerRouter);
+app.use("/admin", adminRouter);
 
 app.listen(8081, () => {
   console.log("Mouadh in the back says Hi!");

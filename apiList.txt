@@ -27,13 +27,13 @@ Get Available Partners (by Location) //
 -------------------------------------------------
 Admin Management
 -------------------------------------------------
-Approve Partner Application
-Decline Partner Application
-Ban Partner
-Unban Partner
-View Reported Partners
-View Partner Applications
-Delete User or Partner
+Approve Partner Application //
+Decline Partner Application //
+Ban Partner //
+Unban Partner //
+View Reported Partners //
+View Partner Applications //
+Delete User or Partner //
 -------------------------------------------------
 
 

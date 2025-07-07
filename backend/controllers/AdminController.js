@@ -1,10 +1,10 @@
-import prisma from "../services/prisma";
+import prisma from "../services/prisma.js";
 import {
   approvePartnerSchema,
   declinePartnerSchema,
   banPartnerSchema,
   deleteEntitySchema,
-} from "../validators/admin.schema";
+} from "../validators/admin.js";
 import * as z from "zod";
 
 export async function approvePartnerApplication(req, res) {
@@ -117,12 +117,10 @@ export async function resolveReport(req, res) {
   }
 }
 
-// Delete User or Partner
 export async function deleteUserOrPartner(req, res) {
   const { id } = deleteEntitySchema.parse(req.params);
 
   try {
-    // Check if it's a user or partner
     const user = await prisma.user.findUnique({ where: { id } });
     if (user) {
       await prisma.user.delete({ where: { id } });
