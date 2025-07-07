@@ -6,6 +6,7 @@ import {
   getAvailablePartnersByLocationSchema,
   updatePartnerAvailabilitySchema,
 } from "../validators/Partner.js";
+import * as z from "zod";
 
 //TODO add multer for cv photo
 export async function applyToBecomePartner(req, res) {

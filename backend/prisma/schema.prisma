@@ -43,6 +43,7 @@ model Partner {
   user            User         @relation(fields: [userId], references: [id])
   businessName    String
   description     String?
+  adminNotes      String?
   serviceTypeId   Int
   serviceType     ServiceType  @relation(fields: [serviceTypeId], references: [id])
   isAvailable     Boolean      @default(true)
