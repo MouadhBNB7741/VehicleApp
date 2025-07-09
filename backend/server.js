@@ -5,7 +5,12 @@ import morgan from "morgan";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { userRouter, partnerRouter, adminRouter } from "./routes/exporter.js";
+import {
+  userRouter,
+  partnerRouter,
+  adminRouter,
+  requestRouter,
+} from "./routes/exporter.js";
 
 dotenv.config();
 
@@ -19,6 +24,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
+//TODO fix the multer
 //making the images acceptable
 // app.use("/uploads", express.static(__dirname, "uploads"));
 
@@ -30,6 +36,7 @@ if (process.env.NODE_ENV !== "test") {
 app.use("/user", userRouter);
 app.use("/partner", partnerRouter);
 app.use("/admin", adminRouter);
+app.use("/request", requestRouter);
 
 app.listen(8081, () => {
   console.log("Mouadh in the back says Hi!");
