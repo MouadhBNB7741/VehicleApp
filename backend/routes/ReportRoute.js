@@ -6,10 +6,7 @@ import {
   getReportsByUserId,
   resolveReport,
 } from "../controllers/ReportController.js";
-import {
-  authMiddleware,
-  roleMiddleware,
-} from "../middlewares/auth.middleware.js";
+import { authMiddleware, roleMiddleware } from "../middlewares/User.js";
 
 const reportRouter = Router();
 

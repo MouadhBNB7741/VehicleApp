@@ -11,7 +11,7 @@ import {
   getRequestsByServiceType,
   getNearbyActiveRequests,
 } from "../controllers/RequestController.js";
-import { authMiddleware } from "../middlewares/auth.middleware.js";
+import { authMiddleware } from "../middlewares/User.js";
 
 const requestRouter = Router();
 
