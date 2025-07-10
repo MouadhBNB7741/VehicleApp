@@ -10,6 +10,7 @@ import {
   partnerRouter,
   adminRouter,
   requestRouter,
+  reportRouter,
 } from "./routes/exporter.js";
 
 dotenv.config();
@@ -37,6 +38,7 @@ app.use("/user", userRouter);
 app.use("/partner", partnerRouter);
 app.use("/admin", adminRouter);
 app.use("/request", requestRouter);
+app.use("/report", reportRouter);
 
 app.listen(8081, () => {
   console.log("Mouadh in the back says Hi!");
