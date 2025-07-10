@@ -4,7 +4,7 @@ import {
   declinePartnerSchema,
   banPartnerSchema,
   deleteEntitySchema,
-} from "../validators/admin.js";
+} from "../validators/Admin.js";
 import * as z from "zod";
 
 export async function approvePartnerApplication(req, res) {

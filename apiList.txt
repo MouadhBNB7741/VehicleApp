@@ -40,28 +40,28 @@ Delete User or Partner //
 -------------------------------------------------
 Request Management (Call for Help)
 -------------------------------------------------
-Create Request for Help
-Get All Requests
-Get Request by ID
-Get Requests by User ID
-Get Requests by Partner ID
-Accept/Decline Request
-Cancel Request
-Complete Request
-Get Requests by Service Type
-Get Nearby Active Requests
+Create Request for Help //
+Get All Requests //
+Get Request by ID //
+Get Requests by User ID //
+Get Requests by Partner ID //
+Accept/Decline Request //
+Cancel Request //
+Complete Request //
+Get Requests by Service Type //
+Get Nearby Active Requests //
 -------------------------------------------------
 
 
 -------------------------------------------------
 Report Management
 -------------------------------------------------
-Submit Report on Partner
-Get All Reports
-Get Report by ID
-Resolve Report
-Get Reports by User ID
-Get Reports by Partner ID
+Submit Report on Partner //
+Get All Reports //
+Get Report by ID //
+Resolve Report //
+Get Reports by User ID //
+Get Reports by Partner ID //
 -------------------------------------------------
 
 
