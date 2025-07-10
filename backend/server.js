@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 
-//TODO fix the multer
+//TODO fix the multer and do some tests
 //making the images acceptable
 // app.use("/uploads", express.static(__dirname, "uploads"));
 
