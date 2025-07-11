@@ -103,14 +103,14 @@ Get Location by Partner ID //
 -------------------------------------------------
 Transaction & Payment Management
 -------------------------------------------------
-Create Transaction
-Get Transaction by Request ID
-Get All Transactions
-Get Transactions by Partner ID
-Get Transactions by User ID
-Update Transaction Status
-Calculate and Collect Tax
-Refund Transaction
+Create Transaction //
+Get Transaction by Request ID //
+Get All Transactions //
+Get Transactions by Partner ID //
+Get Transactions by User ID //
+Update Transaction Status //
+Calculate and Collect Tax //
+Refund Transaction //
 -------------------------------------------------
 
 
