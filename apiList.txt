@@ -134,3 +134,5 @@ Change Password
 Enable 2FA (Optional)
 Verify Email
 -------------------------------------------------
+
+//TODO maybe add more verification

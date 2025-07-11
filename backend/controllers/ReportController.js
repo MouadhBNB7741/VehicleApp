@@ -98,9 +98,8 @@ export async function resolveReport(req, res) {
 }
 
 export async function getReportsByUserId(req, res) {
-  const { userId } = getReportsByUserSchema.parse(req.params);
-
   try {
+    const { userId } = getReportsByUserSchema.parse(req.params);
     const reports = await prisma.report.findMany({
       where: { reporterId: userId },
       include: {
@@ -121,9 +120,8 @@ export async function getReportsByUserId(req, res) {
 }
 
 export async function getReportsByPartnerId(req, res) {
-  const { partnerId } = getReportsByPartnerSchema.parse(req.params);
-
   try {
+    const { partnerId } = getReportsByPartnerSchema.parse(req.params);
     const reports = await prisma.report.findMany({
       where: { partnerId },
       include: {

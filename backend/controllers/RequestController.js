@@ -75,9 +75,8 @@ export async function getRequestById(req, res) {
 }
 
 export async function getRequestsByUserId(req, res) {
-  const { userId } = getRequestsByUserSchema.parse(req.params);
-
   try {
+    const { userId } = getRequestsByUserSchema.parse(req.params);
     const requests = await prisma.request.findMany({
       where: { userId },
       include: {
@@ -99,9 +98,8 @@ export async function getRequestsByUserId(req, res) {
 }
 
 export async function getRequestsByPartnerId(req, res) {
-  const { partnerId } = getRequestsByPartnerSchema.parse(req.params);
-
   try {
+    const { partnerId } = getRequestsByPartnerSchema.parse(req.params);
     const requests = await prisma.request.findMany({
       where: { partnerId },
       include: {
@@ -189,9 +187,8 @@ export async function completeRequest(req, res) {
 }
 
 export async function getRequestsByServiceType(req, res) {
-  const { serviceTypeId } = getRequestsByServiceTypeSchema.parse(req.query);
-
   try {
+    const { serviceTypeId } = getRequestsByServiceTypeSchema.parse(req.query);
     const requests = await prisma.request.findMany({
       where: { serviceTypeId },
       include: {

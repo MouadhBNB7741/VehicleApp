@@ -118,9 +118,8 @@ export async function resolveReport(req, res) {
 }
 
 export async function deleteUserOrPartner(req, res) {
-  const { id } = deleteEntitySchema.parse(req.params);
-
   try {
+    const { id } = deleteEntitySchema.parse(req.params);
     const user = await prisma.user.findUnique({ where: { id } });
     if (user) {
       await prisma.user.delete({ where: { id } });
