@@ -12,6 +12,7 @@ import {
   requestRouter,
   reportRouter,
   carVerificationRouter,
+  serviceRouter,
 } from "./routes/exporter.js";
 
 dotenv.config();
@@ -41,6 +42,7 @@ app.use("/admin", adminRouter);
 app.use("/request", requestRouter);
 app.use("/report", reportRouter);
 app.use("/carVerification", carVerificationRouter);
+app.use("/services", serviceRouter);
 
 app.listen(8081, () => {
   console.log("Mouadh in the back says Hi!");

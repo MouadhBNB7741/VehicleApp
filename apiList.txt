@@ -68,32 +68,32 @@ Get Reports by Partner ID //
 -------------------------------------------------
 Car Verification & Guarantee
 -------------------------------------------------
-Request Car Verification
-Get All Verifications
-Get Verification by ID
-Verify Car (Admin Action)
-Issue Guarantee
-Get Guarantee by Verification ID
-Check Guarantee Validity
+Request Car Verification //
+Get All Verifications //
+Get Verification by ID //
+Verify Car (Admin Action) //
+Issue Guarantee //
+Get Guarantee by Verification ID //
+Check Guarantee Validity //
 -------------------------------------------------
 
 
 -------------------------------------------------
 Service Management
 -------------------------------------------------
-Get All Service Types
-Get Services by Category (Car / House)
-Add New Service Type (Admin)
-Update Service Type (Admin)
-Delete Service Type (Admin)
+Get All Service Types //
+Get Services by Category (Car / House) //
+Add New Service Type (Admin) //
+Update Service Type (Admin) //
+Delete Service Type (Admin) //
 -------------------------------------------------
 
 
 -------------------------------------------------
 Location Management
 -------------------------------------------------
-Update User Location
-Update Partner Location
+Update User Location 
+Update Partner Location 
 Get Nearest Partners by Location
 Get Location by User ID
 Get Location by Partner ID
