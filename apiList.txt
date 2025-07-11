@@ -128,11 +128,10 @@ Get All Notifications for Partner //
 -------------------------------------------------
 Authentication & Security
 -------------------------------------------------
-Send Password Reset Email
-Reset Password
-Change Password
-Enable 2FA (Optional)
-Verify Email
+Send Password Reset Email //
+Reset Password //
+Change Password //
+Verify Email //
 -------------------------------------------------
 
 //TODO maybe add more verification

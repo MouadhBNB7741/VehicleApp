@@ -16,6 +16,7 @@ import {
   locationRouter,
   transactionRouter,
   notificationsRouter,
+  authRouter,
 } from "./routes/exporter.js";
 
 dotenv.config();
@@ -49,6 +50,7 @@ app.use("/services", serviceRouter);
 app.use("/location", locationRouter);
 app.use("/transaction", transactionRouter);
 app.use("/notifications", notificationsRouter);
+app.use("/auth", authRouter);
 
 app.listen(8081, () => {
   console.log("Mouadh in the back says Hi!");

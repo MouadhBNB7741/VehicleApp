@@ -8,3 +8,4 @@ export { default as serviceRouter } from "../routes/ServiceRoute.js";
 export { default as locationRouter } from "../routes/LocationRoute.js";
 export { default as transactionRouter } from "../routes/TransactionRoute.js";
 export { default as notificationsRouter } from "../routes/NotificationsRoute.js";
+export { default as authRouter } from "../routes/AuthRoute.js";
