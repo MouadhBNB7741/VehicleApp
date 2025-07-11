@@ -92,11 +92,11 @@ Delete Service Type (Admin) //
 -------------------------------------------------
 Location Management
 -------------------------------------------------
-Update User Location 
-Update Partner Location 
-Get Nearest Partners by Location
-Get Location by User ID
-Get Location by Partner ID
+Update User Location //
+Update Partner Location // 
+Get Nearest Partners by Location //
+Get Location by User ID //
+Get Location by Partner ID //
 -------------------------------------------------
 
 

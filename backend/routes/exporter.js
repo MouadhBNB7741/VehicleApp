@@ -5,3 +5,4 @@ export { default as requestRouter } from "../routes/RequestRoute.js";
 export { default as reportRouter } from "../routes/ReportRoute.js";
 export { default as carVerificationRouter } from "../routes/GuarenteeRoute.js";
 export { default as serviceRouter } from "../routes/ServiceRoute.js";
+export { default as locationRouter } from "../routes/LocationRoute.js";
