@@ -117,11 +117,11 @@ Refund Transaction //
 -------------------------------------------------
 Notification Management
 -------------------------------------------------
-Send Notification to User
-Send Notification to Partner
-Mark Notification as Read
-Get All Notifications for User
-Get All Notifications for Partner
+Send Notification to User //
+Send Notification to Partner //
+Mark Notification as Read //
+Get All Notifications for User //
+Get All Notifications for Partner //
 -------------------------------------------------
 
 
