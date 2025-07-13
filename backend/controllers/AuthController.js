@@ -1,7 +1,7 @@
 import prisma from "../services/prisma.js";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcryptjs";
-import { sendMessage } from "../services/nodemailer";
+import { sendEmail } from "../services/nodemailer.js";
 import {
   verifyEmailSchema,
   resetPasswordSchema,
@@ -33,11 +33,11 @@ export async function sendEmailVerification(req, res) {
 
     const verifyLink = `${token}`; //TODO need to be changed
 
-    await sendMessage({
-      to: user.email,
-      subject: "Verify Your Email",
-      html: `<p>Click <a href="${verifyLink}">here</a> to verify your email.</p>`,
-    });
+    await sendEmail(
+      user.email,
+      "Verify Your Email",
+      `<p>Click <a href="${verifyLink}">here</a> to verify your email.</p>`
+    );
 
     return res.json({ message: "Verification email sent" });
   } catch (error) {
@@ -89,11 +89,11 @@ export async function sendPasswordResetEmail(req, res) {
 
     const resetLink = `${token}`; //TODO change url
 
-    await sendMessage({
-      to: email,
-      subject: "Reset Your Password",
-      html: `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`,
-    });
+    await sendEmail(
+      email,
+      "Reset Your Password",
+      `<p>Click <a href="${resetLink}">here</a> to reset your password.</p>`
+    );
 
     return res.json({ message: "Password reset email sent" });
   } catch (error) {

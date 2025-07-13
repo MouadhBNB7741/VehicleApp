@@ -5,6 +5,7 @@ import {
   getReportsByPartnerId,
   getReportsByUserId,
   resolveReport,
+  submitReportOnPartner,
 } from "../controllers/ReportController.js";
 import { authMiddleware, roleMiddleware } from "../middlewares/User.js";
 
