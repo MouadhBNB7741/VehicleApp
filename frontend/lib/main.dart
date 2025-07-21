@@ -1,13 +1,32 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:window_size/window_size.dart';
+import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
+
 import 'providers/auth_provider.dart';
 import 'screens/login_screen.dart';
 
-//TODO remove all prints
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Set window size only on desktop
+  if (!kIsWeb &&
+      (defaultTargetPlatform == TargetPlatform.windows ||
+          defaultTargetPlatform == TargetPlatform.linux ||
+          defaultTargetPlatform == TargetPlatform.macOS)) {
+    setWindowTitle('VehicleHam App');
+    setWindowMinSize(const Size(400, 812));
+    setWindowMaxSize(const Size(400, 812));
+    setWindowFrame(const Rect.fromLTWH(600, 100, 375, 812));
+  }
+
+  final authProvider = AuthProvider();
+  await authProvider.init();
+
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => AuthProvider())],
+      providers: [ChangeNotifierProvider.value(value: authProvider)],
       child: const MyApp(),
     ),
   );
@@ -20,28 +39,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'VehicleHam',
-      theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(primarySwatch: Colors.blue, useMaterial3: true),
       home: const AuthWrapper(),
     );
   }
 }
 
-// This widget checks auth status and redirects
-class AuthWrapper extends StatefulWidget {
+class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
-
-  @override
-  State<AuthWrapper> createState() => _AuthWrapperState();
-}
-
-class _AuthWrapperState extends State<AuthWrapper> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AuthProvider>(context, listen: false).init();
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,10 +57,19 @@ class _AuthWrapperState extends State<AuthWrapper> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
-    if (auth.isAuthenticated) {
-      return const Scaffold(body: Center(child: Text("mouadh")));
-    } else {
-      return const LoginScreen();
-    }
+    return auth.isAuthenticated ? const HomeScreen() : const LoginScreen();
+  }
+}
+
+// Placeholder until you create it
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text("Home")),
+      body: const Center(child: Text("Welcome!")),
+    );
   }
 }
