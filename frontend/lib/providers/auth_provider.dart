@@ -47,9 +47,7 @@ class AuthProvider with ChangeNotifier {
 
     try {
       final response = await http.post(
-        Uri.parse(
-          'localthost:8081/user/login',
-        ), // Use 10.0.2.2 for Android emulator
+        Uri.parse('http://localhost:8081/user/login'),
         headers: {'Content-Type': 'application/json'},
         body: json.encode({'email': email, 'password': password}),
       );

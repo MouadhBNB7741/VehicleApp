@@ -39,7 +39,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<AuthProvider>(context, listen: false).autoLogin();
+      Provider.of<AuthProvider>(context, listen: false).init();
     });
   }
 
@@ -52,7 +52,7 @@ class _AuthWrapperState extends State<AuthWrapper> {
     }
 
     if (auth.isAuthenticated) {
-      return Text("mouadh");
+      return const Scaffold(body: Center(child: Text("mouadh")));
     } else {
       return const LoginScreen();
     }
