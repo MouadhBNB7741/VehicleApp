@@ -28,17 +28,28 @@ class SecureStorageService {
 
   Future<void> write({required String key, required String value}) async {
     final encrypted = _encrypter.encrypt(value, iv: _iv);
+
     await _isar.writeTxn(() async {
-      await _isar.secureEntrys.put(
-        SecureEntry()
-          ..key = key
-          ..encryptedValue = encrypted.base64,
-      );
+      final existing = await _isar.secureEntrys
+          .filter()
+          .keyEqualTo(key)
+          .findFirst();
+
+      if (existing != null) {
+        existing.encryptedValue = encrypted.base64;
+        await _isar.secureEntrys.put(existing);
+      } else {
+        await _isar.secureEntrys.put(
+          SecureEntry()
+            ..key = key
+            ..encryptedValue = encrypted.base64,
+        );
+      }
     });
   }
 
   Future<String?> read({required String key}) async {
-    final entry = await _isar.secureEntrys.getByName(key);
+    final entry = await _isar.secureEntrys.filter().keyEqualTo(key).findFirst();
     if (entry == null) return null;
 
     try {

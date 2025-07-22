@@ -93,4 +93,6 @@ class AuthProvider with ChangeNotifier {
 
   // Is the user logged in?
   bool get isAuthenticated => _user != null;
+  // Inside AuthProvider class
+  String? get userRole => _user?.role;
 }

@@ -1,11 +1,12 @@
-// lib/main.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
-
+//screens
 import 'providers/auth_provider.dart';
 import 'screens/login_screen.dart';
+import 'screens/user_home_screen.dart';
+import 'screens/partner_home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +58,38 @@ class AuthWrapper extends StatelessWidget {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
-    return auth.isAuthenticated ? const HomeScreen() : const LoginScreen();
+    if (!auth.isAuthenticated) {
+      return const LoginScreen();
+    }
+
+    // User is authenticated — check role
+    final role = auth.userRole;
+
+    switch (role) {
+      case 'USER':
+        return const UserHomeScreen();
+      case 'PARTNER':
+        return const PartnerHomeScreen();
+      case 'ADMIN':
+        // ❌ Admin not allowed in mobile app
+        // Log out automatically and redirect to login
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Admin access not allowed on mobile."),
+            ),
+          );
+          auth.logout(); // Auto logout admin
+        });
+        return const LoginScreen();
+
+      default:
+        // Unknown role — logout
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          auth.logout();
+        });
+        return const LoginScreen();
+    }
   }
 }
 
