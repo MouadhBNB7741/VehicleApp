@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart' show defaultTargetPlatform, kIsWeb;
 //screens
 import 'providers/auth_provider.dart';
 import 'screens/login_screen.dart';
-import 'screens/user_home_screen.dart';
-import 'screens/partner_home_screen.dart';
+import 'screens/user/user_home_screen.dart';
+import 'screens/partner/partner_home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
