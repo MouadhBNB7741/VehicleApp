@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/user.dart';
-import '../services/secure_storage.dart';
+import 'package:frontend/models/user.dart';
+import 'package:frontend/services/secure_storage.dart';
 
 class AuthProvider with ChangeNotifier {
   late SecureStorageService _storage;

@@ -37,6 +37,7 @@ dependencies:
   provider: ^6.1.1
   http: ^1.2.1
   window_size: ^0.1.0
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +62,9 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/icons/
+    - assets/logo.png
+    - assets/icons/google.svg
+    - assets/icons/facebook.svg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
