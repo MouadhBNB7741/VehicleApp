@@ -3,9 +3,9 @@ import * as zod from "zod";
 export const applyToBecomePartnerSchema = zod.object({
   userId: zod.string().cuid(),
   businessName: zod.string().min(2),
-  description: zod.string().optional(),
+  experienceSummary: zod.string().optional(),
   serviceTypeId: zod.number().int(),
-  locationId: zod.number().int().optional(),
+  cvUrl: zod.string(),
 });
 
 export const updatePartnerProfileSchema = applyToBecomePartnerSchema

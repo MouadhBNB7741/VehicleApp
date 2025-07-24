@@ -178,6 +178,7 @@ model PartnerApplication {
   userId           String
   user             User         @relation(fields: [userId], references: [id])
   cvUrl            String
+  businessName     String
   experienceSummary String?
   serviceTypeId    Int
   serviceType      ServiceType  @relation(fields: [serviceTypeId], references: [id])
