@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:frontend/providers/auth_provider.dart';
 
@@ -63,150 +63,148 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xFF0079D8), // Dark blue
-              Color(0xFF00B4DB), // Lighter blue
-            ],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          // Background Gradient
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xFFE8F0FE), // Light blue
+                  Color(0xFFFFFFFF), // White
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 60),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Logo & Title
-                Center(
-                  child: Column(
-                    children: [
-                      Image.asset('assets/logo.png', height: 80, width: 80),
-                      const SizedBox(height: 16),
-                      const Text(
-                        "VEHICLEHAM",
-                        style: TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 1.2,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "Welcome back!",
-                        style: TextStyle(color: Colors.white, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
 
-                const SizedBox(height: 50),
-
-                // Form
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      _buildTextField(
-                        label: "Email",
-                        icon: Icons.email_outlined,
-                        controller: _emailController,
-                        keyboardType: TextInputType.emailAddress,
-                      ),
-                      const SizedBox(height: 24),
-                      _buildTextField(
-                        label: "Password",
-                        icon: Icons.lock_outline,
-                        controller: _passwordController,
-                        obscure: true,
-                      ),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 16),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(color: Colors.white),
-                      ),
+          // Content
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Logo
+                  CircleAvatar(
+                    radius: 50,
+                    backgroundColor: Colors.blue,
+                    child: Image.asset(
+                      'assets/logo.png', // Replace with your logo image
+                      width: 50,
+                      height: 50,
                     ),
-                  ],
-                ),
+                  ),
 
-                const SizedBox(height: 24),
+                  const SizedBox(height: 24),
 
-                // Log In Button
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
+                  // Welcome Back Title
+                  const Text(
+                    "Welcome Back",
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  // Subtitle
+                  const Text(
+                    "Sign in to access your account",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  const SizedBox(height: 32),
+
+                  // Form
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        _buildTextField(
+                          label: "Email",
+                          icon: Icons.email_outlined,
+                          controller: _emailController,
+                          keyboardType: TextInputType.emailAddress,
+                        ),
+                        const SizedBox(height: 16),
+                        _buildTextField(
+                          label: "Password",
+                          icon: Icons.lock_outline,
+                          controller: _passwordController,
+                          obscure: true,
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  // Sign In Button
+                  ElevatedButton(
                     onPressed: _submitForm,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.blue,
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      elevation: 4, // Add shadow for depth
+                      minimumSize: Size(
+                        double.infinity,
+                        48,
+                      ), // Match text field width
                     ),
                     child: const Text(
                       "Log In",
                       style: TextStyle(
                         fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ),
-                ),
 
-                const SizedBox(height: 40),
+                  const SizedBox(height: 24),
 
-                // OR Divider
-                Row(
-                  children: [
-                    Expanded(child: Divider(color: Colors.white)),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16),
-                      child: Text("OR", style: TextStyle(color: Colors.white)),
-                    ),
-                    Expanded(child: Divider(color: Colors.white)),
-                  ],
-                ),
+                  // OR Divider
+                  Row(
+                    children: [
+                      Expanded(child: Divider(color: Colors.grey[300])),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text(
+                          "OR CONTINUE WITH",
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ),
+                      Expanded(child: Divider(color: Colors.grey[300])),
+                    ],
+                  ),
 
-                const SizedBox(height: 24),
+                  const SizedBox(height: 16),
 
-                // Social Login Buttons
-                _buildSocialButton(
-                  context,
-                  'Continue with Google',
-                  'assets/icons/google.svg',
-                  Colors.white,
-                  _signInWithGoogle,
-                ),
-                const SizedBox(height: 16),
-                _buildSocialButton(
-                  context,
-                  'Continue with Facebook',
-                  'assets/icons/facebook.svg',
-                  Colors.white,
-                  _signInWithFacebook,
-                ),
-
-                const SizedBox(height: 40),
-              ],
+                  // Social Login Buttons
+                  _buildSocialButton(
+                    context,
+                    'Continue with Google',
+                    () => _signInWithGoogle(),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildSocialButton(
+                    context,
+                    'Continue with Facebook',
+                    () => _signInWithFacebook(),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -224,8 +222,8 @@ class _LoginScreenState extends State<LoginScreen> {
         Text(
           label,
           style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
+            color: Colors.black,
+            fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -234,21 +232,20 @@ class _LoginScreenState extends State<LoginScreen> {
           controller: controller,
           obscureText: obscure,
           keyboardType: keyboardType,
-          style: const TextStyle(color: Colors.white),
           decoration: InputDecoration(
-            prefixIcon: Icon(icon, color: Colors.white, size: 20),
+            prefixIcon: Icon(icon, color: Colors.grey[400], size: 20),
             filled: true,
-            fillColor: Colors.grey[850],
+            fillColor: Colors.grey[200],
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
               borderSide: BorderSide.none,
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: const BorderSide(color: Colors.white),
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(color: Colors.blue, width: 1),
             ),
             contentPadding: const EdgeInsets.symmetric(
-              vertical: 14,
+              vertical: 12,
               horizontal: 16,
             ),
           ),
@@ -261,38 +258,36 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget _buildSocialButton(
     BuildContext context,
     String label,
-    String svgAsset,
-    Color bgColor,
     VoidCallback onTap,
   ) {
-    return SizedBox(
-      width: double.infinity,
-      child: OutlinedButton(
-        onPressed: onTap,
-        style: OutlinedButton.styleFrom(
-          side: BorderSide(color: Colors.white, width: 1),
-          padding: const EdgeInsets.symmetric(vertical: 14),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
+    return OutlinedButton(
+      onPressed: onTap,
+      style: OutlinedButton.styleFrom(
+        side: BorderSide(color: Colors.grey[300]!, width: 1),
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        minimumSize: Size(double.infinity, 48), // Match text field width
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPicture.asset(
+            label == 'Continue with Google'
+                ? 'assets/icons/google.svg' // Path to your Google SVG
+                : 'assets/icons/facebook.svg', // Path to your Facebook SVG
+            width: 24,
+            height: 24,
           ),
-          backgroundColor: bgColor.withOpacity(0.1),
-          elevation: 2, // Add subtle shadow
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(svgAsset, width: 24, height: 24),
-            const SizedBox(width: 12),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
+          const SizedBox(width: 12),
+          Text(
+            label,
+            style: const TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
