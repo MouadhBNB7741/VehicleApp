@@ -35,13 +35,9 @@ class SettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text("Logout"),
-            onTap: () {
-              Provider.of<AuthProvider>(context, listen: false).logout();
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                '/login',
-                (_) => false,
-              );
+            onTap: () async {
+              await Provider.of<AuthProvider>(context, listen: false).logout();
+              Navigator.pop(context);
             },
           ),
         ],

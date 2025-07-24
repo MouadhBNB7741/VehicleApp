@@ -106,6 +106,7 @@ model UserLocation {
 model Request {
   id             String       @id @default(cuid())
   userId         String
+  description    String
   user           User         @relation(fields: [userId], references: [id])
   serviceTypeId  Int
   serviceType    ServiceType  @relation(fields: [serviceTypeId], references: [id])

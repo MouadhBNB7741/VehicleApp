@@ -348,17 +348,6 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
           _buildEmptyState()
         else
           ..._recentRequests.take(3).map(_buildRequestItem),
-        if (_recentRequests.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: TextButton(
-              onPressed: () {}, // TODO: Implement view all
-              child: const Text(
-                'VIEW ALL REQUESTS',
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-            ),
-          ),
       ],
     );
   }
